@@ -962,7 +962,7 @@
       "last_verified": "2026-10-15",
       "data_policy": {
         "trains_on_prompts": null,
-        "retention": "The gateway layer does not retain prompts, outputs, or sensitive data, and user data is deleted immediately after a request completes.",
+        "retention": "Deleted immediately after each request; the gateway does not retain prompts, outputs, or sensitive data",
         "source": "https://vercel.com/i/secure-ai-gateway",
         "checked": "2026-10-15",
         "quote": "The gateway layer does not retain prompts, outputs, or sensitive data, and user data is deleted immediately after a request completes.",
