@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
   "version": "2.11.0",
-  "generated": "2026-10-16",
+  "generated": "2026-10-15",
   "source": "https://github.com/pacocartones/free-llm-api-hub",
   "note": "Canonical dataset. README tables, badge-freshness.json and the interactive site are all generated from this file — do not hand-edit them. `verified: true` means the core facts (tier, limits, key catch, link) were independently confirmed against the provider's own docs on `last_verified`. `verified: false` means sourced from community tracking and not yet independently re-confirmed here — treat those as indicative. Attribute fields (openai_compatible, modalities, best_for) are progressively backfilled and may be null.",
   "providers": [
@@ -1374,7 +1374,7 @@
       "free_type": "trial-credit",
       "free_tier": "Free credits equivalent to 5 hours of Reverb ASR (speech-to-text), usable across all Rev AI products",
       "rate_limits": "Bounded by the 5-hour credit grant",
-      "notes": "Free credits are available at signup. Rev AI Terms of Service section 2.1 permits use of services for internal business purposes; section 2.2 prohibits reselling, sublicensing, or offering them through a fee-for-service bureau. Commercial use is permitted for internal business use, not resale or service-bureau use. Source: https://www.rev.com/legal/terms (read 2026-10-16).",
+      "notes": "Free credits are available at signup. Section 2.1 says «you may use such Services solely for your internal business purposes during the applicable Order Term»; section 2.2(f) prohibits «rent, lease, lend, sell or sublicense the Software or Services or otherwise provide access to the Software or Services as part of a service bureau or similar fee-for-service purpose». The Terms do not say whether signup free credits are an Order, so commercial use of these credits is unconfirmed. Source: https://www.rev.com/legal/terms (read 2026-10-15).",
       "best_for": "5 free hours of high-accuracy speech-to-text to evaluate",
       "modalities": ["audio"],
       "models_free": null,
@@ -1382,13 +1382,13 @@
       "docs_url": "https://www.rev.ai/pricing",
       "phone_required": null,
       "card_required": false,
-      "commercial_ok": true,
+      "commercial_ok": null,
       "openai_compatible": false,
       "env_key": "REV_AI_API_KEY",
       "is_text_llm": false,
       "model_tier": null,
       "verified": true,
-      "last_verified": "2026-10-16",
+      "last_verified": "2026-10-15",
       "added": "2026-07-31"
     },
     {
