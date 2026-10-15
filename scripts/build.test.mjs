@@ -1904,6 +1904,18 @@ test('/coverage/ says how to propose one value, is in the sitemap with an absolu
   assert.match(readFileSync(join(ROOT, 'site/p/groq.html'), 'utf8'), /<a href="\.\.\/coverage\/">Data coverage<\/a>/, 'the shared footer of a generated page');
 });
 
+test('a11y: the filter chips stay reachable by keyboard and screen reader, with a visible focus', () => {
+  const css = readFileSync(join(ROOT, 'site/styles.css'), 'utf8');
+  assert.doesNotMatch(css, /\.chip input\s*\{[^}]*display\s*:\s*none/, 'a display:none checkbox leaves the chip out of the tab order and the accessibility tree');
+  assert.match(css, /\.chip:has\(input:focus-visible\)/, 'the focused chip shows an outline');
+  assert.match(css, /--control-border:\s*#[0-9a-f]{6}/i, 'a control border token exists for the 3:1 non-text contrast');
+
+  const index = readFileSync(join(ROOT, 'site/index.html'), 'utf8');
+  const chips = index.match(/<label class="chip">[\s\S]*?<\/label>/g) || [];
+  assert.ok(chips.length >= 6, 'the six filter chips are in the template');
+  for (const chip of chips) assert.match(chip, /<input type="checkbox" id="f-[a-z]+">/, 'each chip label contains its checkbox, so the label stays the click target');
+});
+
 // ---- Dated banner mechanism (site/site.js) ---------------------------------
 // A banner hand-written in site/index.html is removed by site/site.js once its
 // data-until day (UTC, inclusive) has passed; none is on the page today. The build stays
