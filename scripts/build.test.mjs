@@ -2147,9 +2147,9 @@ test('data_policy lot 5: at least 25 of 68, Deepgram trains by its terms with an
   for (const dp of [dg, rw]) { assert.equal(dp.checked, '2026-10-15'); assert.ok(dp.quote.length <= 400 && dp.note.length <= 300); }
 });
 
-test('data_policy lot 6: 26 of 68, AI21 says it does not train, with the conditions of its own sentence', () => {
+test('data_policy lot 6: 27 of 68, AI21 says it does not train, with the conditions of its own sentence', () => {
   const data = JSON.parse(readFileSync(DATA, 'utf8'));
-  assert.equal(data.providers.filter((p) => p.data_policy).length, 26, 'the count of covered providers');
+  assert.equal(data.providers.filter((p) => p.data_policy).length, 27, 'the count of covered providers');
   const dp = data.providers.find((p) => p.slug === 'ai21').data_policy;
   assert.equal(dp.trains_on_prompts, false); assert.equal(dp.plan_named, false); assert.equal(dp.checked, '2026-10-15');
   assert.equal(dp.source, 'https://www.ai21.com/terms-policies/privacy-policy/', 'the final address, not the one that redirects');
