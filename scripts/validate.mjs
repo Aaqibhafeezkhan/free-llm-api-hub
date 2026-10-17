@@ -22,6 +22,7 @@ import { codingToolsErrors } from './lib/coding-tools.mjs';
 import { hasHiddenChars } from './lib/hidden-chars.mjs';
 import { quoteErrors } from './lib/quotes.mjs';
 import { reportErrors } from './lib/quotes-report.mjs';
+import { keyHostErrors } from './lib/key-hosts.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FILE = process.argv[2] ? resolve(process.argv[2]) : join(ROOT, 'data/providers.json');
@@ -78,6 +79,8 @@ const todayUtc = process.env.VALIDATE_TODAY || new Date().toISOString().slice(0,
 if (DATE_RE.test(data.generated || '') && data.generated > todayUtc) errors.push(`top-level: generated (${data.generated}) is after today in UTC (${todayUtc}); write the dates of the dataset in UTC (date -u +%F)`);
 if (!Array.isArray(data.providers) || data.providers.length === 0)
   errors.push('top-level: providers must be a non-empty array');
+// A provider key may only be sent to the host pinned for it in code (ADVISORY-007): the client configs hand that base URL to users.
+errors.push(...keyHostErrors(data.providers));
 
 // `generated` must cover the newest verification or addition in the dataset.
 // Every consumer of it — sitemap <lastmod>, /api/v1 index, CITATION.cff and

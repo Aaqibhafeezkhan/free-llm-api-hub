@@ -28,7 +28,7 @@ import { codingToolsMainHtml } from './lib/free-coding-tools.mjs';
 import { dataPolicyRows, dataPolicyMainHtml } from './lib/data-policy-page.mjs';
 import { quotesReportHtml } from './lib/quotes-report.mjs';
 import { SCORE_WEIGHTS, EDITORIAL_WEIGHT, EDITORIAL_DEFAULT, MATH_INPUTS, MIN_CONFIRMED, TOP_SIZE, EDITORIAL_NOTE_THRESHOLD, STABILITY_MIN_DAYS, STABILITY_MIN_SAMPLES, rankProviders, editorialRating } from './lib/score.mjs';
-import { openaiClients, litellmYaml } from './lib/client-config.mjs';
+import { publishableClientConfigs } from './lib/client-config.mjs';
 import * as compareLib from './lib/compare.mjs';
 import { requirementsHtml, limitsHtml, glanceHtml, modelsHtml, dataPolicyHtml } from './lib/provider-sections.mjs';
 import { providerFigures, expandFigures, injectInlineFigures, figureErrors } from './lib/figures.mjs';
@@ -1566,9 +1566,18 @@ for (const m of API_MODS) {
 // providers, and the JSON Schema the dataset is validated against. These are the
 // only API files that publish env_key: the NAME of the variable holding the
 // user's own key, never a value (see scripts/lib/client-config.mjs).
-const clientList = openaiClients(providers);
+// ADVISORY-007: the deploy builds without running validate.mjs, so the build itself refuses to publish a client config whose key
+// points at a host that is not pinned for it (publishableClientConfigs throws).
+let clientConfigs;
+try {
+  clientConfigs = publishableClientConfigs({ version: data.version, generated: data.generated, providers });
+} catch (error) {
+  console.error('✗ ' + error.message);
+  process.exit(1);
+}
+const clientList = clientConfigs.clients;
 writeApi('openai-clients.json', { ...apiBase, description: 'Base URL, API-key env var name and sampled free models for every verified OpenAI-compatible provider. Plug into any OpenAI SDK; confirm free-tier terms in docs_url first.', count: clientList.length, clients: clientList });
-writeFileSync(join(ROOT, 'site/api/v1/litellm.yaml'), litellmYaml({ version: data.version, generated: data.generated, providers }));
+writeFileSync(join(ROOT, 'site/api/v1/litellm.yaml'), clientConfigs.yaml);
 writeFileSync(join(ROOT, 'site/api/v1/schema.json'), readFileSync(join(ROOT, 'data/schema.json')));
 const apiEndpoints = {
   providers: 'v1/providers.json',
