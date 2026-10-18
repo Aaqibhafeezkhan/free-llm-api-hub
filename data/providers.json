@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
   "version": "2.11.0",
-  "generated": "2026-10-17",
+  "generated": "2026-10-18",
   "source": "https://github.com/pacocartones/free-llm-api-hub",
   "note": "Canonical dataset. README tables, badge-freshness.json and the interactive site are all generated from this file — do not hand-edit them. `verified: true` means the core facts (tier, limits, key catch, link) were independently confirmed against the provider's own docs on `last_verified`. `verified: false` means sourced from community tracking and not yet independently re-confirmed here — treat those as indicative. Attribute fields (openai_compatible, modalities, best_for) are progressively backfilled and may be null.",
   "providers": [
@@ -1246,7 +1246,8 @@
       "is_text_llm": true,
       "model_tier": null,
       "verified": true,
-      "last_verified": "2026-10-15"
+      "last_verified": "2026-10-15",
+      "data_policy": {"trains_on_prompts":false,"retention":"Only as long as needed to provide the service (clause 2.14), subject to legal exceptions","plan_named":false,"source":"https://cloud.tencent.com/document/product/301/129852","checked":"2026-10-18","quote":null,"note":"China-site TokenHub Terms of Service, in force from 2026-09-14. Clause 2.17: Tencent does not use inputs to develop, train, fine-tune or improve its own algorithms, models or services; third-party deployed models (such as DeepSeek) follow their own terms. Quote not registered yet (Chinese page)."}
     },
     {
       "slug": "voyage-ai",
