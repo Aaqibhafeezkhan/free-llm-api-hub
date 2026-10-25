@@ -17,7 +17,7 @@ Direction, not dated promises. The north star: stay the **most trustworthy, curr
 
 ## Done recently
 
-- ✅ Cleared the ⚠️ backlog — the three entries whose free API access couldn't be confirmed were removed (see the changelog); the list is now 100% verified.
+- ✅ Removed three entries whose free API access could not be confirmed (see the changelog). Verification status is tracked per provider in `data/providers.json` and can change as entries are re-checked.
 - ✅ Backfilled `openai_compatible`, `modalities`, and `openai_base_url`. To check the current base-URL count, count entries with `openai_base_url` in `data/providers.json`.
 - ✅ Shipped editorial [collections](../collections/README.md) generated from the data: no-card, no-phone, commercial-use, OpenAI-compatible, permanently-free, multimodal.
 - ✅ Per-provider OpenAI base URLs + a runnable quickstart (curl + OpenAI SDK) on the OpenAI-compatible page.
